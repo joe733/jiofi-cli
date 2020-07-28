@@ -23,7 +23,7 @@ def getDevices(log:bool = True):
     data = res.json()
     no_devices = data['client_count']
     devices = data['entries']
-    if log is False:
+    if not log:
         return no_devices
     else:
         print(tabulate(devices,headers="keys"))
@@ -68,7 +68,7 @@ def deviceDetails(log:bool = True):
     battery = data['battery_level']
     status = data['battery_status']
     phone = data['msisdn']
-    if log is False:
+    if not log:
         return battery,status
     else:
         print(f"Battery 🔋:\t {battery}%\nBattery Status:\t {status}\nJio Number:\t{phone}")
@@ -93,7 +93,7 @@ def getWanInfo(log:bool = True):
         total_data = data_upl_mb + data_dwl_mb
     except NameError:
         total_data = float(data_dwl[:-3])+float(data_upl[:-3])
-    if log is False:
+    if not log:
         return total_data
     else:
         print(f'Upload Data Usage:\t{data_upl}\nDownload Data Usage:\t{data_dwl}\nTotal Data Usage:\t{total_data} MB in {getLteStats()}')
